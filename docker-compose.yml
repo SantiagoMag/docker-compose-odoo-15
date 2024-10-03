@@ -12,7 +12,6 @@ services:
     environment:
       - HOST=dboa
       - PASSWORD=myodoooa
-    user: "1000:1000"  # ID del usuario y grupo para Odoo
     volumes:
       - ./dataodoo:/var/lib/odoo
       - ./config:/etc/odoo
