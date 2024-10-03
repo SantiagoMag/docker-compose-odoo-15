@@ -10,22 +10,23 @@ services:
       - "8005:8069"
       - "33000:8072"
     environment:
-    - HOST=dboa
-    - PASSWORD=myodoooa
+      - HOST=dboa
+      - PASSWORD=myodoooa
+    user: "1000:1000"  # ID del usuario y grupo para Odoo
     volumes:
-    - ./dataodoo:/var/lib/odoo
-    - ./config:/etc/odoo
+      - ./dataodoo:/var/lib/odoo
+      - ./config:/etc/odoo
 
   dboa:
     image: postgres:12
     container_name: db8005
     restart: always
     environment:
-    - POSTGRES_DB=postgres
-    - POSTGRES_PASSWORD=myodoooa
-    - POSTGRES_USER=odoo
-    - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoooa
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
     ports:
       - "5405:5432"
     volumes:
-    - ./datapg:/var/lib/postgresql/data/pgdata
+      - ./datapg:/var/lib/postgresql/data/pgdata
