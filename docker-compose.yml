@@ -15,8 +15,6 @@ services:
     volumes:
     - ./dataodoo:/var/lib/odoo
     - ./config:/etc/odoo
-    - ./extra-addons:/mnt/extra-addons
-    - ./custom-addons:/mnt/custom-addons
 
   dboa:
     image: postgres:12
