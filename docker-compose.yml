@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+  web8005:
+    image: odoo:17.0
+    container_name: web8005
+    restart: always
+    depends_on:
+      - dboa
+    ports:
+      - "8005:8069"
+      - "33000:8072"
+    environment:
+    - HOST=dboa
+    - PASSWORD=myodoooa
+    volumes:
+    - ./dataodoo:/var/lib/odoo
+    - ./config:/etc/odoo
+    - ./extra-addons:/mnt/extra-addons
+    - ./custom-addons:/mnt/custom-addons
+
+  dboa:
+    image: postgres:12
+    container_name: db8005
+    restart: always
+    environment:
+    - POSTGRES_DB=postgres
+    - POSTGRES_PASSWORD=myodoooa
+    - POSTGRES_USER=odoo
+    - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - "5405:5432"
+    volumes:
+    - ./datapg:/var/lib/postgresql/data/pgdata
